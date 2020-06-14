@@ -19,15 +19,20 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.b2c.userservice.model.Agent;
 import com.b2c.userservice.model.Store;
 
 @Repository
 public class StoreDaoImpl implements IStoreDao {
 
 	@Autowired
+	IAgentDao iAgentDao;
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
 	public long saveStore(Store store) {
+		Agent result = iAgentDao.getAgentRseResult(store.getCreatedby());
+		if (result != null) {
 		String sql = "INSERT INTO store (STORENAME, STORELICNO, STOREPANNO, STORELICENSEIMAGE, STOREADDRESS, STORECITY, "
 				+ "STOREPINCODE, STORELAT, STORELONG, STOREPICIMAGENAME, STORECONTACTDETAILS, OWNERNAME, OWNERCONTACT, "
 				+ "OWNEREMAIL, STORETYPE, STORESTATE, CREATEDBY, CREATEDDATE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -66,6 +71,7 @@ public class StoreDaoImpl implements IStoreDao {
 		}, holder);
 		return holder.getKey().intValue();
 	}
+		return 0;}
 
 	public Store getStoreRseResult(long id) {
 		String sql = "SELECT ID, STORENAME, STORELICNO, STOREPANNO, STORELICENSEIMAGE, STOREADDRESS, STORECITY, STOREPINCODE,"
