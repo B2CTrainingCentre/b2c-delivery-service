@@ -44,13 +44,11 @@ public class StoreController {
 	// update record into database with input from postman
 	@RequestMapping(path = "updatestore/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Store> update(@PathVariable long id, @RequestBody Store request) {
-		System.out.println("hello1");
 		Store value = storeService.updateStoreData(id, request.getStorename(), request.getStorelicno(), request.getStorepanno(), 
 				request.getStorelicenseimage(), request.getStoreaddress(), request.getStorecity(), request.getStorepincode(), 
 				request.getStorelat(), request.getStorelong(), request.getStorepicimagename(), request.getStorecontactdetails(), 
 				request.getOwnername(), request.getOwnercontact(), request.getOwneremail(), request.getStoretype(), 
 				request.getStorestate(), request.getCreatedby());
-		System.out.println("hello2");
 		return new ResponseEntity<>(value, HttpStatus.OK);
 	}
 

@@ -105,13 +105,11 @@ public class StoreDaoImpl implements IStoreDao {
 		return result;
 	}
 
-	public Store updateStoreResult1(long id, String storename, String storelicno, String storepanno, String storelicenseimage, 
-			String storeaddress, String storecity, String storepincode, float storelat, float storelong, String storepicimagename, 
-			String storecontactdetails, String ownername, String ownercontact, String owneremail, String storetype, String storestate, 
-			int createdby) {
-		System.out.println("hello4");
+	public Store updateStoreResult1(long id, String storename, String storelicno, String storepanno,
+			String storelicenseimage, String storeaddress, String storecity, String storepincode, float storelat,
+			float storelong, String storepicimagename, String storecontactdetails, String ownername,
+			String ownercontact, String owneremail, String storetype, String storestate, int createdby) {
 		Store result = getStoreRseResult(id);
-		System.out.println("hello5");
 		if (result != null) {
 			String sql = "UPDATE store SET STORENAME = ?, STORELICNO = ?, STOREPANNO = ?, STORELICENSEIMAGE = ?, STOREADDRESS = ?, "
 					+ "STORECITY = ?, STOREPINCODE = ?, STORELAT = ?, STORELONG = ?, STOREPICIMAGENAME = ?, STORECONTACTDETAILS = ?, "
@@ -124,112 +122,107 @@ public class StoreDaoImpl implements IStoreDao {
 				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 					// TODO Auto-generated method stub
 					PreparedStatement statement = con.prepareStatement(sql, new String[] { "ID" });
-					System.out.println("hello6aa");
 					if (storename != null && storename.trim().length() > 0) {
 						statement.setString(1, storename);
 					} else {
 						statement.setString(1, result.getStorename());
 					}
 
-					System.out.println("hello6ab");
-					if (storelicno.equals("")) {
-						statement.setString(2, result.getStorelicno());
-					} else {
+					if (storelicno != null && storelicno.trim().length() > 0) {
 						statement.setString(2, storelicno);
+					} else {
+						statement.setString(2, result.getStorelicno());
 					}
 
-					System.out.println("hello6ac");
-					if (storepanno.equals("")) {
-						statement.setString(3, result.getStorepanno());
-					} else {
+					if (storepanno != null && storepanno.trim().length() > 0) {
 						statement.setString(3, storepanno);
+					} else {
+						statement.setString(3, result.getStorepanno());
 					}
 
-					System.out.println("hello6ad");
-					if (storelicenseimage.equals("")) {
-						statement.setString(4, result.getStorelicenseimage());
-					} else {
+					if (storelicenseimage != null && storelicenseimage.trim().length() > 0) {
 						statement.setString(4, storelicenseimage);
+					} else {
+						statement.setString(4, result.getStorelicenseimage());
 					}
 
-					System.out.println("hello6ae");
-					if (storeaddress.equals("")) {
-						statement.setString(5, result.getStoreaddress());
-					} else {
+					if (storeaddress != null && storeaddress.trim().length() > 0) {
 						statement.setString(5, storeaddress);
+					} else {
+						statement.setString(5, result.getStoreaddress());
 					}
 
-					System.out.println("hello6af");
-					if (storecity.equals("")) {
-						statement.setString(6, result.getStorecity());
-					} else {
+					if (storecity != null && storecity.trim().length() > 0) {
 						statement.setString(6, storecity);
+					} else {
+						statement.setString(6, result.getStorecity());
 					}
 
-					System.out.println("hello6ag");
-					if (storepincode.equals("")) {
-						statement.setString(7, result.getStorepincode());
-					} else {
+					if (storepincode != null && storepincode.trim().length() > 0) {
 						statement.setString(7, storepincode);
+					} else {
+						statement.setString(7, result.getStorepincode());
 					}
 
-					System.out.println("hello6a");
-					statement.setFloat(8, storelat);
-					statement.setFloat(9, storelong);
-
-					if (storepicimagename.equals("")) {
-						statement.setString(10, result.getStorepicimagename());
+					if (storelat != 0) {
+						statement.setFloat(8, storelat);
 					} else {
+						statement.setFloat(8, result.getStorelat());
+					}
+					
+					if (storelong != 0) {
+						statement.setFloat(9, storelong);
+					} else {
+						statement.setFloat(9, result.getStorelong());
+					}
+
+					if (storepicimagename != null && storepicimagename.trim().length() > 0) {
 						statement.setString(10, storepicimagename);
+					} else {
+						statement.setString(10, result.getStorepicimagename());
 					}
 
-					if (storecontactdetails.equals("")) {
-						statement.setString(11, result.getStorecontactdetails());
-					} else {
+					if (storecontactdetails != null && storecontactdetails.trim().length() > 0) {
 						statement.setString(11, storecontactdetails);
+					} else {
+						statement.setString(11, result.getStorecontactdetails());
 					}
 
-					if (ownername.equals("")) {
-						statement.setString(12, result.getOwnername());
-					} else {
+					if (ownername != null && ownername.trim().length() > 0) {
 						statement.setString(12, ownername);
-					}
-					
-					if (ownercontact.equals("")) {
-						statement.setString(13, result.getOwnercontact());
 					} else {
+						statement.setString(12, result.getOwnername());
+					}
+
+					if (ownercontact != null && ownercontact.trim().length() > 0) {
 						statement.setString(13, ownercontact);
-					}
-					System.out.println("hello6b");
-					
-					if (owneremail.equals("")) {
-						statement.setString(14, result.getOwneremail());
 					} else {
+						statement.setString(13, result.getOwnercontact());
+					}
+
+					if (owneremail != null && owneremail.trim().length() > 0) {
 						statement.setString(14, owneremail);
+					} else {
+						statement.setString(14, result.getOwneremail());
 					}
-					
-					System.out.println("hello7");
+
 					statement.setString(15, result.getStatus());
-					
-					System.out.println("hello8");
-					if (storetype.equals("")) {
-						statement.setString(16, result.getStoretype());
-					} else {
+
+					if (storetype != null && storetype.trim().length() > 0) {
 						statement.setString(16, storetype);
-					}
-					
-					if (storestate.equals("")) {
-						statement.setString(17, result.getStorestate());
 					} else {
-						statement.setString(17, storestate);
+						statement.setString(16, result.getStoretype());
 					}
-					
+
+					if (storestate != null && storestate.trim().length() > 0) {
+						statement.setString(17, storestate);
+					} else {
+						statement.setString(17, result.getStorestate());
+					}
+
 					statement.setInt(18, createdby);
-					System.out.println("hello9");
 					statement.setTimestamp(19, result.getCreateddate());
-					System.out.println("hello10");
 					statement.setLong(20, id);
-					System.out.println("hello11");
 					return statement;
 				}
 			}, holder);
