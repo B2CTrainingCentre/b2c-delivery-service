@@ -59,7 +59,7 @@ public class StoreController {
 		} else {
 			return new ResponseEntity<>(value, HttpStatus.NOT_FOUND);
 		}
-		//return new ResponseEntity<>(value, HttpStatus.OK); code commented
+		//return new ResponseEntity<>(value, HttpStatus.OK); code commented for pushing
 	}
 
 	// deactivate record in database
