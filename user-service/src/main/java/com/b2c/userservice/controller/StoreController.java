@@ -54,7 +54,12 @@ public class StoreController {
 				request.getStorepicimagename(), request.getStorecontactdetails(), request.getOwnername(),
 				request.getOwnercontact(), request.getOwneremail(), request.getStoretype(), request.getStorestate(),
 				request.getCreatedby());
-		return new ResponseEntity<>(value, HttpStatus.OK);
+		if (value != null) {
+			return new ResponseEntity<>(value, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(value, HttpStatus.NOT_FOUND);
+		}
+		//return new ResponseEntity<>(value, HttpStatus.OK);
 	}
 
 	// deactivate record in database

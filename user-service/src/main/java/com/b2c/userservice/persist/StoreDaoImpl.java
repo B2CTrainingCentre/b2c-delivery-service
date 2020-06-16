@@ -26,7 +26,7 @@ import com.b2c.userservice.model.Store;
 public class StoreDaoImpl implements IStoreDao {
 
 	@Autowired
-	IAgentDao iAgentDao;
+	private IAgentDao iAgentDao;
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -115,6 +115,9 @@ public class StoreDaoImpl implements IStoreDao {
 			String storelicenseimage, String storeaddress, String storecity, String storepincode, float storelat,
 			float storelong, String storepicimagename, String storecontactdetails, String ownername,
 			String ownercontact, String owneremail, String storetype, String storestate, int createdby) {
+		Store result2 = getStoreRseResult(id);
+		Agent result1 = iAgentDao.getAgentRseResult(createdby);
+		if (result1 != null) {
 		Store result = getStoreRseResult(id);
 		if (result != null) {
 			String sql = "UPDATE store SET STORENAME = ?, STORELICNO = ?, STOREPANNO = ?, STORELICENSEIMAGE = ?, STOREADDRESS = ?, "
@@ -235,6 +238,10 @@ public class StoreDaoImpl implements IStoreDao {
 
 		}
 		return getStoreRseResult(id);
+		}else {
+		result2 = null;
+		return result2;}
+		
 	}
 
 	public Store deleteStoreResult2(long id) {
